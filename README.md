@@ -15,3 +15,8 @@
 docker-compose up -d
 ```
 6. Levantar: ```yarn start:dev```
+7. Para tener los datos ya listos ejecutar en postman
+
+```
+api/seed
+```
