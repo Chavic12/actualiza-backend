@@ -8,6 +8,19 @@ export const areasSeed = [
     {
       nombreArea: "Biología",
     },
+    {
+      nombreArea: "Idiomas"
+    },
+    {
+      nombreArea: "Economía"
+    },
+    {
+      nombreArea: "Informática"
+    },
+    {
+      nombreArea: "Arte"
+    }            
+    
   ];
 
   

@@ -25,10 +25,11 @@ export class Evento {
     estado: string;
 
     @Column()
-    hora: string;
+    inicioHora: string;
+
 
     @ManyToMany(() => Area, area => area.eventos)
     @JoinTable()
-  areas: Area;
+    areas: Area;
 
 }
