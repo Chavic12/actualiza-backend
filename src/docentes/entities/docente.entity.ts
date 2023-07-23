@@ -30,4 +30,6 @@ export class Docente {
   @ManyToMany(() => Area, area => area.docentes)
   @JoinTable()
   areas: Area;
+  docente: any[];
+ 
 }
