@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DocentesModule } from './docentes/docentes.module';
-import { Docente } from './docentes/entities/docente.entity';
 import { SeedModule } from './seed/seed.module';
 
 @Module({

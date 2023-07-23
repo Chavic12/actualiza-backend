@@ -1,12 +1,12 @@
 export const areasSeed = [
     {
-      nombre: "Matemáticas",
+      nombreArea: "Matemáticas",
     },
     {
-      nombre: "Física",
+      nombreArea: "Física",
     },
     {
-      nombre: "Biología",
+      nombreArea: "Biología",
     },
   ];
 

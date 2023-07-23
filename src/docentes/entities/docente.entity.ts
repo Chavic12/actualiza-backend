@@ -1,28 +1,33 @@
-import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Area } from "./area.entity";
 
 @Entity()
 export class Docente {
-    @PrimaryGeneratedColumn('increment')
-    id: number;
+  @PrimaryGeneratedColumn('increment')
+  id: number;
 
-    @Column('text')
-    nombre: string;
+  @Column('text')
+  nombreDocente: string;
 
-    @Column('text')
-    identificacion: string;
-    
-    @Column('text')
-    carrera: string;
+  @Column('text')
+  identificacion: string;
 
-    @Column('text')
-    telefono: string;
+  @Column('text')
+  correo: string;
+  
+  @Column('text')
+  carrera: string;
 
-    @Column('text')
-    descripcion: string;
+  @Column('text')
+  telefono: string;
 
-    @OneToMany(() => Area,
-    area => area.docentes,
-    {cascade: true})
-    areas: Area[];
+  @Column('text')
+  descripcion: string;
+
+  @Column('text')
+  estado: string;
+
+  @ManyToMany(() => Area, area => area.docentes)
+  @JoinTable()
+  areas: Area;
 }

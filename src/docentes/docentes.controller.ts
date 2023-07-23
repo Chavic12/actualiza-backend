@@ -4,6 +4,7 @@ import { CreateDocenteDto } from './dto/create-docente.dto';
 import { UpdateDocenteDto } from './dto/update-docente.dto';
 import { Area } from './entities/area.entity';
 import { Docente } from './entities/docente.entity';
+import { Evento } from './entities/evento.entity';
 
 @Controller('docentes')
 export class DocentesController {
@@ -60,5 +61,32 @@ export class DocentesController {
   @Delete('docentes/:id')
   async deleteDocente(@Param('id') id: number): Promise<void> {
     return this.docentesService.deleteDocente(id);
+  }
+
+  // Métodos para la entidad Evento
+  @Get('eventos')
+
+  async getAllEventos(): Promise<Evento[]> {
+    return this.docentesService.findAllEventos();
+  }
+
+  @Get('eventos/:id')
+  async getEventosById(@Param('id') id: number): Promise<Evento> {
+    return this.docentesService.findEventoById(id);
+  }
+
+  @Post('eventos')
+  async createEvento(@Body() eventoData: Partial<Docente>): Promise<Evento> {
+    return this.docentesService.createEvento(eventoData);
+  }
+
+  @Put('eventos/:id')
+  async updateEvento(@Param('id') id: number, @Body() eventoData: Partial<Evento>): Promise<Evento> {
+    return this.docentesService.updateEvento(id, eventoData);
+  }
+
+  @Delete('eventos/:id')
+  async deleteEvento(@Param('id') id: number): Promise<void> {
+    return this.docentesService.deleteEvento(id);
   }
 }

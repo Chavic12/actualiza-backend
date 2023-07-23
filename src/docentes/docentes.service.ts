@@ -17,7 +17,6 @@ export class DocentesService {
     private eventoRepository: Repository<Evento>,
   ) {}
 
-  
 
   // Métodos para la entidad Area
   async findAllAreas(): Promise<Area[]> {
@@ -26,8 +25,11 @@ export class DocentesService {
 
   async findAreaById(id: number): Promise<Area> {
     const options: FindOneOptions<Area> = { where: { id } };
+    
     return this.areaRepository.findOne(options);
   }
+
+  
 
   async createArea(areaData: Partial<Area>): Promise<Area> {
     const area = this.areaRepository.create(areaData);
@@ -52,6 +54,9 @@ export class DocentesService {
     }
     await this.areaRepository.remove(area);
   }
+
+
+  
 
   // Métodos para la entidad Docente
   async findAllDocentes(): Promise<Docente[]> {
@@ -121,5 +126,7 @@ export class DocentesService {
     }
     await this.eventoRepository.remove(evento);
   }
+
+  
 }
 

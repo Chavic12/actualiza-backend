@@ -6,6 +6,7 @@ export const eventosSeed = [
       duracion: "2 horas",
       fecha: "2023-07-25",
       imgen: "https://example.com/taller_algebra.jpg",
+      estado: "Listo",
     },
     {
       titulo: "Conferencia de Física Moderna",
@@ -13,5 +14,14 @@ export const eventosSeed = [
       duracion: "1 hora",
       fecha: "2023-08-05",
       imgen: "https://example.com/conferencia_fisica.jpg",
+      estado: "Pendiente asignacion",
     },
+    {
+      titulo: "Taller de Biología",
+      descripcion: "Taller práctico de resolución de problemas de biología",
+      duracion: "2 horas",
+      fecha: "2023-08-15",
+      imgen: "https://example.com/taller_biologia.jpg",
+      estado: "Sin asignacion",
+    }
   ];

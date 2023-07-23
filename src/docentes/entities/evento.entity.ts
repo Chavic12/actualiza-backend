@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Area } from "./area.entity";
 
 @Entity()
@@ -21,10 +21,14 @@ export class Evento {
     @Column()
     imgen: string;
 
-    @OneToMany(
-        () => Area,
-        area => area.eventos,
-        {cascade: true}
-        )
-    areas?: Area[];
+    @Column()
+    estado: string;
+
+    @Column()
+    hora: string;
+
+    @ManyToMany(() => Area, area => area.eventos)
+    @JoinTable()
+  areas: Area;
+
 }
