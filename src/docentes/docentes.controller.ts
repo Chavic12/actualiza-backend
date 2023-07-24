@@ -50,11 +50,11 @@ export class DocentesController {
     return this.docentesService.deleteArea(id);
   }
 
-  // // Métodos para la entidad Docente
-  // @Get('docentes')
-  // async getAllDocentes(): Promise<Docente[]> {
-  //   return this.docentesService.findAllDocentes();
-  // }
+  // Métodos para la entidad Docente
+  @Get('docentes')
+  async getAllDocentes(): Promise<Docente[]> {
+    return this.docentesService.findAllDocentes();
+  }
 
   @Get('docentes/:id')
   async getDocenteById(@Param('id') id: number): Promise<Docente> {
@@ -79,11 +79,11 @@ export class DocentesController {
     return this.docentesService.deleteDocente(id);
   }
 
-  // // Métodos para la entidad Evento
-  // @Get('eventos')
-  // async getAllEventos(): Promise<Evento[]> {
-  //   return this.docentesService.findAllEventos();
-  // }
+  // Métodos para la entidad Evento
+  @Get('eventos')
+  async getAllEventos(): Promise<Evento[]> {
+    return this.docentesService.findAllEventos();
+  }
 
   @Get('eventos/:id')
   async getEventosById(@Param('id') id: number): Promise<Evento> {
@@ -108,15 +108,15 @@ export class DocentesController {
     return this.docentesService.deleteEvento(id);
   }
 
-  @Get(':tipo')
-  async getDataWithAreas(@Param('tipo') tipo: string) {
-    if (tipo === 'docentes') {
-      return this.docentesService.getAllDocentesWithAreas();
-    } else if (tipo === 'eventos') {
-      return this.docentesService.getAllEventosWithAreas();
-    } else {
-      // Si no se proporciona el tipo o no coincide con 'docentes' o 'eventos'
-      throw new NotFoundException('Tipo de datos no válido');
-    }
-  }
+  // @Get(':tipo')
+  // async getDataWithAreas(@Param('tipo') tipo: string) {
+  //   if (tipo === 'docentes') {
+  //     return this.docentesService.getAllDocentesWithAreas();
+  //   } else if (tipo === 'eventos') {
+  //     return this.docentesService.getAllEventosWithAreas();
+  //   } else {
+  //     // Si no se proporciona el tipo o no coincide con 'docentes' o 'eventos'
+  //     throw new NotFoundException('Tipo de datos no válido');
+  //   }
+  // }
 }

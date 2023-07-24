@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { DocentesService } from 'src/docentes/docentes.service';
 import { areasSeed } from './seed/areas.seed';
 import { docentesSeed } from './seed/docentes.seed';
 import { eventosSeed } from './seed/eventos.seed';
