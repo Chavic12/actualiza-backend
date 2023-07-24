@@ -21,11 +21,11 @@ import { Evento } from './entities/evento.entity';
 export class DocentesController {
   constructor(private readonly docentesService: DocentesService) {}
 
-  // Métodos para la entidad Area
-  @Get('areas')
-  async getAllAreas(): Promise<Area[]> {
-    return this.docentesService.findAllAreas();
-  }
+  // // Métodos para la entidad Area
+  // @Get('areas')
+  // async getAllAreas(): Promise<Area[]> {
+  //   return this.docentesService.findAllAreas();
+  // }
 
   @Get('areas/:id')
   async getAreaById(@Param('id', ParseIntPipe) id: number): Promise<Area> {
@@ -50,11 +50,11 @@ export class DocentesController {
     return this.docentesService.deleteArea(id);
   }
 
-  // Métodos para la entidad Docente
-  @Get('docentes')
-  async getAllDocentes(): Promise<Docente[]> {
-    return this.docentesService.findAllDocentes();
-  }
+  // // Métodos para la entidad Docente
+  // @Get('docentes')
+  // async getAllDocentes(): Promise<Docente[]> {
+  //   return this.docentesService.findAllDocentes();
+  // }
 
   @Get('docentes/:id')
   async getDocenteById(@Param('id') id: number): Promise<Docente> {
