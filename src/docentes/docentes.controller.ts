@@ -119,4 +119,13 @@ export class DocentesController {
       throw new NotFoundException('Tipo de datos no válido');
     }
   }
+  @Get('docentes/:id/with-areas')
+  async getDocenteByIdWithAreas(@Param('id', ParseIntPipe) id: number): Promise<Docente> {
+    return this.docentesService.findDocenteByIdWithAreas(id);
+  }
+
+  @Get('eventos/:id/with-areas')
+  async getEventoByIdWithAreas(@Param('id', ParseIntPipe) id: number): Promise<Evento> {
+    return this.docentesService.findEventoByIdWithAreas(id);
+  }
 }

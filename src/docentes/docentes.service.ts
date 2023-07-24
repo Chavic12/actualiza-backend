@@ -140,6 +140,22 @@ export class DocentesService {
       .getMany();
   }
 
+  async findDocenteByIdWithAreas(id: number): Promise<Docente> {
+    return this.docenteRepository
+      .createQueryBuilder('docente')
+      .leftJoinAndSelect('docente.areas', 'areas')
+      .where('docente.id = :id', { id })
+      .getOne();
+  }
+
+  async findEventoByIdWithAreas(id: number): Promise<Evento> {
+    return this.eventoRepository
+      .createQueryBuilder('evento')
+      .leftJoinAndSelect('evento.areas', 'areas')
+      .where('evento.id = :id', { id })
+      .getOne();
+  }
+
   
 }
 
