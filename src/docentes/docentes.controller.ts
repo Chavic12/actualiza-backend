@@ -79,11 +79,11 @@ export class DocentesController {
     return this.docentesService.deleteDocente(id);
   }
 
-  // Métodos para la entidad Evento
-  @Get('eventos')
-  async getAllEventos(): Promise<Evento[]> {
-    return this.docentesService.findAllEventos();
-  }
+  // // Métodos para la entidad Evento
+  // @Get('eventos')
+  // async getAllEventos(): Promise<Evento[]> {
+  //   return this.docentesService.findAllEventos();
+  // }
 
   @Get('eventos/:id')
   async getEventosById(@Param('id') id: number): Promise<Evento> {
