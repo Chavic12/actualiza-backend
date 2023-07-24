@@ -28,7 +28,6 @@ export class DocentesService {
     
     return this.areaRepository.findOne(options);
   }
-
   
 
   async createArea(areaData: Partial<Area>): Promise<Area> {
@@ -125,6 +124,20 @@ export class DocentesService {
       throw new Error('Evento not found');
     }
     await this.eventoRepository.remove(evento);
+  }
+
+  async getAllDocentesWithAreas(): Promise<Docente[]> {
+    return this.docenteRepository
+      .createQueryBuilder('docente')
+      .leftJoinAndSelect('docente.areas', 'areas')
+      .getMany();
+  }
+
+  async getAllEventosWithAreas(): Promise<Evento[]> {
+    return this.eventoRepository
+      .createQueryBuilder('evento')
+      .leftJoinAndSelect('evento.areas', 'areas')
+      .getMany();
   }
 
   

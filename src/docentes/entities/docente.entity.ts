@@ -10,6 +10,9 @@ export class Docente {
   nombreDocente: string;
 
   @Column('text')
+  apellidoDocente: string;
+
+  @Column('text')
   identificacion: string;
 
   @Column('text')
@@ -30,6 +33,5 @@ export class Docente {
   @ManyToMany(() => Area, area => area.docentes)
   @JoinTable()
   areas: Area;
-  docente: any[];
  
 }
