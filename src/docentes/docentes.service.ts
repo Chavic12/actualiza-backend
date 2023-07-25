@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { Area } from './entities/area.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -17,7 +17,6 @@ export class DocentesService {
     private eventoRepository: Repository<Evento>,
   ) {}
 
-
   // Métodos para la entidad Area
   async findAllAreas(): Promise<Area[]> {
     return this.areaRepository.find();
@@ -25,10 +24,9 @@ export class DocentesService {
 
   async findAreaById(id: number): Promise<Area> {
     const options: FindOneOptions<Area> = { where: { id } };
-    
+
     return this.areaRepository.findOne(options);
   }
-  
 
   async createArea(areaData: Partial<Area>): Promise<Area> {
     const area = this.areaRepository.create(areaData);
@@ -54,9 +52,6 @@ export class DocentesService {
     await this.areaRepository.remove(area);
   }
 
-
-  
-
   // Métodos para la entidad Docente
   async findAllDocentes(): Promise<Docente[]> {
     return this.docenteRepository.find();
@@ -64,7 +59,7 @@ export class DocentesService {
 
   async findDocenteById(id: number): Promise<Docente> {
     const options: FindOneOptions<Docente> = { where: { id } };
-    
+
     return this.docenteRepository.findOne(options);
   }
 
@@ -73,7 +68,10 @@ export class DocentesService {
     return this.docenteRepository.save(docente);
   }
 
-  async updateDocente(id: number, docenteData: Partial<Docente>): Promise<Docente> {
+  async updateDocente(
+    id: number,
+    docenteData: Partial<Docente>,
+  ): Promise<Docente> {
     const options: FindOneOptions<Docente> = { where: { id } };
     const docente = await this.docenteRepository.findOne(options);
     if (!docente) {
@@ -156,6 +154,39 @@ export class DocentesService {
       .getOne();
   }
 
-  
-}
+  async partialUpdateDocente(
+    id: number,
+    docenteData: Partial<Docente>,
+  ): Promise<Docente> {
+    const options: FindOneOptions<Docente> = { where: { id } };
+    const docente = await this.docenteRepository.findOne(options);
+    if (!docente) {
+      throw new NotFoundException('Docente not found');
+    }
+    Object.assign(docente, docenteData);
+    return this.docenteRepository.save(docente);
+  }
 
+  async partialUpdateEvento(
+    id: number,
+    eventoData: Partial<Evento>,
+  ): Promise<Evento> {
+    const options: FindOneOptions<Evento> = { where: { id } };
+    const evento = await this.eventoRepository.findOne(options);
+    if (!evento) {
+      throw new NotFoundException('Evento not found');
+    }
+    Object.assign(evento, eventoData);
+    return this.eventoRepository.save(evento);
+  }
+
+  async partialUpdateArea(id: number, areaData: Partial<Area>): Promise<Area> {
+    const options: FindOneOptions<Area> = { where: { id } };
+    const area = await this.areaRepository.findOne(options);
+    if (!area) {
+      throw new NotFoundException('Area not found');
+    }
+    Object.assign(area, areaData);
+    return this.areaRepository.save(area);
+  }
+}

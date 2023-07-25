@@ -25,6 +25,9 @@ export class Docente {
   telefono: string;
 
   @Column('text')
+  imagen: string;
+
+  @Column('text')
   descripcion: string;
 
   @Column('text')

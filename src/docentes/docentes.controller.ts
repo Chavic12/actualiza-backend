@@ -128,4 +128,28 @@ export class DocentesController {
   async getEventoByIdWithAreas(@Param('id', ParseIntPipe) id: number): Promise<Evento> {
     return this.docentesService.findEventoByIdWithAreas(id);
   }
+
+  @Patch('docentes/:id')
+  async partialUpdateDocente(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() docenteData: Partial<Docente>,
+  ): Promise<Docente> {
+    return this.docentesService.partialUpdateDocente(id, docenteData);
+  }
+
+  @Patch('eventos/:id')
+  async partialUpdateEvento(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() eventoData: Partial<Evento>,
+  ): Promise<Evento> {
+    return this.docentesService.partialUpdateEvento(id, eventoData);
+  }
+
+  @Patch('areas/:id')
+  async partialUpdateArea(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() areaData: Partial<Area>,
+  ): Promise<Area> {
+    return this.docentesService.partialUpdateArea(id, areaData);
+  }
 }

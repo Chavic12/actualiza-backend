@@ -3,7 +3,7 @@ export const eventosSeed = [
   {
     titulo: 'Taller de Fotografía',
     descripcion: 'Taller práctico para aprender técnicas de fotografía',
-    duracion: '4 horas',
+    duracion: 5,
     fecha: '2023-08-05',
     imgen: 'taller-fotografia.jpg',
     estado: 'Programado',
@@ -13,7 +13,7 @@ export const eventosSeed = [
   {
     titulo: 'Concierto de Música Clásica',
     descripcion: 'Concierto de música clásica con obras de Beethoven y Mozart',
-    duracion: '3 horas',
+    duracion: 5,
     fecha: '2023-08-10',
     imgen: 'concierto-musica-clasica.png',
     estado: 'Programado',
@@ -22,7 +22,7 @@ export const eventosSeed = [
   {
     titulo: 'Seminario de Marketing Digital',
     descripcion: 'Seminario sobre estrategias de marketing digital',
-    duracion: '5 horas',
+    duracion: 5,
     fecha: '2023-08-15',
     imgen: 'seminario-marketing-digital.jpg',
     estado: 'Programado',
@@ -31,7 +31,7 @@ export const eventosSeed = [
   {
     titulo: 'Exposición de Arte Contemporáneo',
     descripcion: 'Exposición de obras de artistas contemporáneos',
-    duracion: '2 horas',
+    duracion: 5,
     fecha: '2023-08-20',
     imgen: 'exposicion-arte-contemporaneo.png',
     estado: 'Programado',
@@ -40,7 +40,7 @@ export const eventosSeed = [
   {
     titulo: 'Conferencia de Ciencias Ambientales',
     descripcion: 'Conferencia sobre conservación del medio ambiente',
-    duracion: '1 hora',
+    duracion: 5,
     fecha: '2023-08-25',
     imgen: 'conferencia-ciencias-ambientales.jpg',
     estado: 'Programado',
@@ -50,7 +50,7 @@ export const eventosSeed = [
     titulo: 'Taller de Cocina',
     descripcion:
       'Taller práctico para aprender recetas de cocina internacional',
-    duracion: '3 horas',
+    duracion: 5,
     fecha: '2023-09-02',
     imgen: 'taller-cocina.jpg',
     estado: 'Programado',
@@ -59,7 +59,7 @@ export const eventosSeed = [
   {
     titulo: 'Concierto de Rock',
     descripcion: 'Concierto de bandas de rock locales',
-    duracion: '4 horas',
+    duracion: 5,
     fecha: '2023-09-10',
     imgen: 'concierto-rock.png',
     estado: 'Programado',
@@ -68,7 +68,7 @@ export const eventosSeed = [
   {
     titulo: 'Seminario de Liderazgo',
     descripcion: 'Seminario para desarrollar habilidades de liderazgo',
-    duracion: '6 horas',
+    duracion: 5,
     fecha: '2023-09-15',
     imgen: 'seminario-liderazgo.jpg',
     estado: 'Programado',
@@ -77,7 +77,7 @@ export const eventosSeed = [
   {
     titulo: 'Feria de Emprendimiento',
     descripcion: 'Feria para promover emprendimientos locales',
-    duracion: '2 días',
+    duracion: 5,
     fecha: '2023-09-25',
     imgen: 'feria-emprendimiento.jpg',
     estado: 'Programado',

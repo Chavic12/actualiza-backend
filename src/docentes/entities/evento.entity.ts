@@ -12,20 +12,23 @@ export class Evento {
     @Column()
     descripcion: string;
 
-    @Column()
-    duracion: string;
+    @Column('int')
+    duracion: number;
 
     @Column()
     fecha: string;
 
     @Column()
-    imgen: string;
+    imagen: string;
 
     @Column()
     estado: string;
 
     @Column()
     inicioHora: string;
+
+    @Column()
+    modalidad: string;
 
 
     @ManyToMany(() => Area, area => area.eventos)
