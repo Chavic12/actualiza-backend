@@ -6,6 +6,7 @@ import { SeedModule } from './seed/seed.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { MulterModule } from '@nestjs/platform-express';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { MulterModule } from '@nestjs/platform-express';
     }),
     DocentesModule,
     SeedModule,
+    MailModule,
   ],
 })
 export class AppModule {}
