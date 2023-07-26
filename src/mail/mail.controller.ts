@@ -9,9 +9,7 @@ export class MailController {
   async enviarCorreoADocente(@Body() data: { id: string; correo: string }) {
     const { id, correo } = data;
 
-    // Aquí puedes realizar la lógica para verificar que el docente existe en la base de datos
-    // utilizando el servicio de DocentesService o cualquier otro mecanismo de verificación necesario
-    // Si el docente no existe, lanza una excepción como se hizo anteriormente
+    
 
     // Construye el contenido del correo que deseas enviar al docente
     const asuntoCorreo = '¡Recordatorio de evento!';
