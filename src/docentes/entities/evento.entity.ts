@@ -33,6 +33,6 @@ export class Evento {
 
     @ManyToMany(() => Area, area => area.eventos)
     @JoinTable()
-    areas: Area;
+    areas: Area[];
 
 }

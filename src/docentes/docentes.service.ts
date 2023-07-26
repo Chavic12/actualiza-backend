@@ -5,6 +5,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, Repository } from 'typeorm';
 import { Docente } from './entities/docente.entity';
 import { Evento } from './entities/evento.entity';
+import { CreateEventoDto } from './dto/create-evento.dto';
+import { CreateDocenteDto } from './dto/create-docente.dto';
 
 @Injectable()
 export class DocentesService {
@@ -189,4 +191,46 @@ export class DocentesService {
     Object.assign(area, areaData);
     return this.areaRepository.save(area);
   }
+
+    
+  
+
+  // Método para crear un nuevo evento con imagen
+  async createEventoWithImage(
+    eventoData: CreateEventoDto,
+    imagen: Express.Multer.File,
+  ): Promise<Evento> {
+    // Aquí puedes realizar la lógica para guardar la imagen en el servidor y obtener la URL
+    const imageUrl = '/uploads'; // Cambia esto con la URL de la imagen en el servidor
+
+    // Asignar la URL de la imagen al atributo "imagen" del evento
+    eventoData.imagen = imageUrl;
+
+    // Asignar el nombre de archivo único al atributo "imagenNombre" del evento
+    eventoData.imagen = imagen.filename;
+
+    // Crear y guardar el evento en la base de datos
+    const evento = this.eventoRepository.create(eventoData);
+    return this.eventoRepository.save(evento);
+  }
+
+
+  async createDocenteWithImage(
+    docenteData: CreateDocenteDto,
+    imagen: Express.Multer.File,
+  ): Promise<Docente> {
+    // Aquí puedes realizar la lógica para guardar la imagen en el servidor y obtener la URL
+    const imageUrl = '/uploads';
+
+    // Asignar la URL de la imagen al atributo "imagen" del evento
+    docenteData.imagen = imageUrl;
+
+    // Asignar el nombre de archivo único al atributo "imagenNombre" del evento
+    docenteData.imagen = imagen.filename;
+
+    // Crear y guardar el docente en la base de datos
+    const docente = this.docenteRepository.create(docenteData);
+    return this.docenteRepository.save(docente);
+  }
+
 }

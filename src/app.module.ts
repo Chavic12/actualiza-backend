@@ -3,6 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DocentesModule } from './docentes/docentes.module';
 import { SeedModule } from './seed/seed.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -16,6 +19,12 @@ import { SeedModule } from './seed/seed.module';
       password: process.env.DB_PASSWORD,
       autoLoadEntities: true,
       synchronize: true,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+    }),
+    MulterModule.register({
+      dest: './uploads', // Ruta donde se guardarán las imágenes subidas
     }),
     DocentesModule,
     SeedModule,

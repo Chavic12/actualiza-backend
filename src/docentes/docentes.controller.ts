@@ -9,13 +9,23 @@ import {
   Put,
   ParseIntPipe,
   NotFoundException,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { DocentesService } from './docentes.service';
-import { CreateDocenteDto } from './dto/create-docente.dto';
 import { UpdateDocenteDto } from './dto/update-docente.dto';
 import { Area } from './entities/area.entity';
 import { Docente } from './entities/docente.entity';
 import { Evento } from './entities/evento.entity';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import {
+  diskStorageOptions,
+  editFileName,
+  imageFileFilter,
+} from '../utils/file-upload.utils';
+import { CreateEventoDto } from './dto/create-evento.dto';
+import { CreateDocenteDto } from './dto/create-docente.dto';
 
 @Controller()
 export class DocentesController {
@@ -61,10 +71,10 @@ export class DocentesController {
     return this.docentesService.findDocenteById(id);
   }
 
-  @Post('docentes')
-  async createDocente(@Body() docenteData: Partial<Docente>): Promise<Docente> {
-    return this.docentesService.createDocente(docenteData);
-  }
+  // @Post('docentes')
+  // async createDocente(@Body() docenteData: Partial<Docente>): Promise<Docente> {
+  //   return this.docentesService.createDocente(docenteData);
+  // }
 
   @Put('docentes/:id')
   async updateDocente(
@@ -88,11 +98,6 @@ export class DocentesController {
   @Get('eventos/:id')
   async getEventosById(@Param('id') id: number): Promise<Evento> {
     return this.docentesService.findEventoById(id);
-  }
-
-  @Post('eventos')
-  async createEvento(@Body() eventoData: Partial<Docente>): Promise<Evento> {
-    return this.docentesService.createEvento(eventoData);
   }
 
   @Put('eventos/:id')
@@ -120,12 +125,16 @@ export class DocentesController {
     }
   }
   @Get('docentes/:id/with-areas')
-  async getDocenteByIdWithAreas(@Param('id', ParseIntPipe) id: number): Promise<Docente> {
+  async getDocenteByIdWithAreas(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<Docente> {
     return this.docentesService.findDocenteByIdWithAreas(id);
   }
 
   @Get('eventos/:id/with-areas')
-  async getEventoByIdWithAreas(@Param('id', ParseIntPipe) id: number): Promise<Evento> {
+  async getEventoByIdWithAreas(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<Evento> {
     return this.docentesService.findEventoByIdWithAreas(id);
   }
 
@@ -151,5 +160,33 @@ export class DocentesController {
     @Body() areaData: Partial<Area>,
   ): Promise<Area> {
     return this.docentesService.partialUpdateArea(id, areaData);
+  }
+
+  @Post('eventos')
+  @UseInterceptors(
+    FileInterceptor('imagen', {
+      storage: diskStorage(diskStorageOptions), // Usamos las opciones de almacenamiento que definimos
+      fileFilter: imageFileFilter,
+    }),
+  )
+  async createEventoWithImage(
+    @Body() eventoData: CreateEventoDto,
+    @UploadedFile() imagen: Express.Multer.File,
+  ): Promise<Evento> {
+    return this.docentesService.createEventoWithImage(eventoData, imagen);
+  }
+
+  @Post('docentes')
+  @UseInterceptors(
+    FileInterceptor('imagen', {
+      storage: diskStorage(diskStorageOptions),
+      fileFilter: imageFileFilter,
+    }),
+  )
+  async createDocenteWithImage(
+    @Body() docenteData: CreateDocenteDto,
+    @UploadedFile() imagen: Express.Multer.File,
+  ): Promise<Docente> {
+    return this.docentesService.createDocenteWithImage(docenteData, imagen);
   }
 }

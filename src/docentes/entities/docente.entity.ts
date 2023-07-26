@@ -6,35 +6,35 @@ export class Docente {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column('text')
+  @Column()
   nombreDocente: string;
 
-  @Column('text')
+  @Column()
   apellidoDocente: string;
 
-  @Column('text')
+  @Column()
   identificacion: string;
 
-  @Column('text')
+  @Column()
   correo: string;
   
-  @Column('text')
+  @Column()
   carrera: string;
 
-  @Column('text')
+  @Column()
   telefono: string;
 
-  @Column('text')
+  @Column()
   imagen: string;
 
-  @Column('text')
+  @Column()
   descripcion: string;
 
-  @Column('text')
+  @Column()
   estado: string;
 
   @ManyToMany(() => Area, area => area.docentes)
   @JoinTable()
-  areas: Area;
+  areas: Area[];
  
 }
