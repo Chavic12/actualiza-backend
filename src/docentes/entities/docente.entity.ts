@@ -24,7 +24,7 @@ export class Docente {
   @Column()
   telefono: string;
 
-  @Column()
+  @Column({ nullable: true })
   imagen: string;
 
   @Column()

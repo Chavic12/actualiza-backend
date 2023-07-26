@@ -173,7 +173,14 @@ export class DocentesController {
     @Body() eventoData: CreateEventoDto,
     @UploadedFile() imagen: Express.Multer.File,
   ): Promise<Evento> {
+    if (imagen && imagen.filename) {
+    // Si se proporcionó una imagen, procede con el procesamiento de la imagen
+    // y llama al servicio para crear el docente con la imagen
     return this.docentesService.createEventoWithImage(eventoData, imagen);
+  } else {
+    // Si no se proporcionó una imagen, llama al servicio para crear el docente sin imagen
+    return this.docentesService.createEvento(eventoData);
+  }
   }
 
   @Post('docentes')
@@ -187,6 +194,13 @@ export class DocentesController {
     @Body() docenteData: CreateDocenteDto,
     @UploadedFile() imagen: Express.Multer.File,
   ): Promise<Docente> {
-    return this.docentesService.createDocenteWithImage(docenteData, imagen);
+    if (imagen && imagen.filename) {
+      // Si se proporcionó una imagen, procede con el procesamiento de la imagen
+      // y llama al servicio para crear el docente con la imagen
+      return this.docentesService.createDocenteWithImage(docenteData, imagen);
+    } else {
+      // Si no se proporcionó una imagen, llama al servicio para crear el docente sin imagen
+      return this.docentesService.createDocente(docenteData);
+    }
   }
 }

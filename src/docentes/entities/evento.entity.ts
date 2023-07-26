@@ -18,7 +18,7 @@ export class Evento {
     @Column()
     fecha: string;
 
-    @Column()
+    @Column({ nullable: true })
     imagen: string;
 
     @Column()
