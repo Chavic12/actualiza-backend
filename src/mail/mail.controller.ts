@@ -7,7 +7,7 @@ export class MailController {
   constructor(private readonly correoService: MailService) {}
 
   @Post('enviar-correo')
-  async enviarCorreoADocente(@Body() data: { id: string; correo: string; idEvento: number }) {
+  async enviarCorreoADocente(@Body() data: { id: number; correo: string; idEvento: number }) {
     const { id, correo, idEvento } = data;
 
     // Construye la URL de la página de información del evento

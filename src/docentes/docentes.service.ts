@@ -59,8 +59,8 @@ export class DocentesService {
     return this.docenteRepository.find();
   }
 
-  async findDocenteById(idD: number): Promise<Docente> {
-    const options: FindOneOptions<Docente> = { where: { idD } };
+  async findDocenteById(id: number): Promise<Docente> {
+    const options: FindOneOptions<Docente> = { where: { id } };
 
     return this.docenteRepository.findOne(options);
   }
@@ -71,10 +71,10 @@ export class DocentesService {
   }
 
   async updateDocente(
-    idD: number,
+    id: number,
     docenteData: Partial<Docente>,
   ): Promise<Docente> {
-    const options: FindOneOptions<Docente> = { where: { idD } };
+    const options: FindOneOptions<Docente> = { where: { id } };
     const docente = await this.docenteRepository.findOne(options);
     if (!docente) {
       throw new Error('Docente not found');
@@ -83,8 +83,8 @@ export class DocentesService {
     return this.docenteRepository.save(docente);
   }
 
-  async deleteDocente(idD: number): Promise<void> {
-    const options: FindOneOptions<Docente> = { where: { idD } };
+  async deleteDocente(id: number): Promise<void> {
+    const options: FindOneOptions<Docente> = { where: { id } };
     const docente = await this.docenteRepository.findOne(options);
     if (!docente) {
       throw new Error('Docente not found');
@@ -157,10 +157,10 @@ export class DocentesService {
   }
 
   async partialUpdateDocente(
-    idD: number,
+    id: number,
     docenteData: Partial<Docente>,
   ): Promise<Docente> {
-    const options: FindOneOptions<Docente> = { where: { idD } };
+    const options: FindOneOptions<Docente> = { where: { id } };
     const docente = await this.docenteRepository.findOne(options);
     if (!docente) {
       throw new NotFoundException('Docente not found');
