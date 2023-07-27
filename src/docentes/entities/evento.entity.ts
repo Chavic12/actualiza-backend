@@ -1,38 +1,51 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Area } from "./area.entity";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Area } from './area.entity';
+import { Docente } from './docente.entity';
 
 @Entity()
 export class Evento {
-    @PrimaryGeneratedColumn('increment')
-    id: number;
-  
-    @Column()
-    titulo: string;
+  @PrimaryGeneratedColumn('increment')
+  id: number;
 
-    @Column()
-    descripcion: string;
+  @Column()
+  titulo: string;
 
-    @Column('int')
-    duracion: number;
+  @Column()
+  descripcion: string;
 
-    @Column()
-    fecha: string;
+  @Column('int')
+  duracion: number;
 
-    @Column({ nullable: true })
-    imagen: string;
+  @Column()
+  fecha: string;
 
-    @Column()
-    estado: string;
+  @Column({ nullable: true })
+  imagen: string;
 
-    @Column()
-    inicioHora: string;
+  @Column()
+  estado: string;
 
-    @Column()
-    modalidad: string;
+  @Column()
+  inicioHora: string;
 
+  @Column()
+  modalidad: string;
 
-    @ManyToMany(() => Area, area => area.eventos)
-    @JoinTable()
-    areas: Area[];
+  @OneToOne(() => Docente)
+  @JoinColumn()
+  docente: Docente;
 
+  @ManyToMany(() => Area, (area) => area.eventos)
+  @JoinTable()
+  areas: Area[];
 }

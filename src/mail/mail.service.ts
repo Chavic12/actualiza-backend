@@ -24,11 +24,12 @@ export class MailService {
     try {
       // Envío del correo
       await transporter.sendMail(mensajeCorreo);
+      console.log('Correo envido')
     } catch (error) {
       // Manejo de errores si ocurre algún problema en el envío del correo
       // Puedes lanzar una excepción personalizada o manejar el error de acuerdo a tus necesidades
       console.error('Error al enviar el correo:', error.message);
-      throw new Error('Error al enviar el correo al docente');
+      throw new Error('Error al enviar el correo al docente ---');
     }
   }
 }

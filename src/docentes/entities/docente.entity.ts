@@ -4,7 +4,7 @@ import { Area } from "./area.entity";
 @Entity()
 export class Docente {
   @PrimaryGeneratedColumn('increment')
-  id: number;
+  idD: number;
 
   @Column()
   nombreDocente: string;

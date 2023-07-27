@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { Area } from './entities/area.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOneOptions, Repository } from 'typeorm';
+import { FindOneOptions, Repository, getManager } from 'typeorm';
 import { Docente } from './entities/docente.entity';
 import { Evento } from './entities/evento.entity';
 import { CreateEventoDto } from './dto/create-evento.dto';
@@ -59,8 +59,8 @@ export class DocentesService {
     return this.docenteRepository.find();
   }
 
-  async findDocenteById(id: number): Promise<Docente> {
-    const options: FindOneOptions<Docente> = { where: { id } };
+  async findDocenteById(idD: number): Promise<Docente> {
+    const options: FindOneOptions<Docente> = { where: { idD } };
 
     return this.docenteRepository.findOne(options);
   }
@@ -71,10 +71,10 @@ export class DocentesService {
   }
 
   async updateDocente(
-    id: number,
+    idD: number,
     docenteData: Partial<Docente>,
   ): Promise<Docente> {
-    const options: FindOneOptions<Docente> = { where: { id } };
+    const options: FindOneOptions<Docente> = { where: { idD } };
     const docente = await this.docenteRepository.findOne(options);
     if (!docente) {
       throw new Error('Docente not found');
@@ -83,8 +83,8 @@ export class DocentesService {
     return this.docenteRepository.save(docente);
   }
 
-  async deleteDocente(id: number): Promise<void> {
-    const options: FindOneOptions<Docente> = { where: { id } };
+  async deleteDocente(idD: number): Promise<void> {
+    const options: FindOneOptions<Docente> = { where: { idD } };
     const docente = await this.docenteRepository.findOne(options);
     if (!docente) {
       throw new Error('Docente not found');
@@ -157,10 +157,10 @@ export class DocentesService {
   }
 
   async partialUpdateDocente(
-    id: number,
+    idD: number,
     docenteData: Partial<Docente>,
   ): Promise<Docente> {
-    const options: FindOneOptions<Docente> = { where: { id } };
+    const options: FindOneOptions<Docente> = { where: { idD } };
     const docente = await this.docenteRepository.findOne(options);
     if (!docente) {
       throw new NotFoundException('Docente not found');
@@ -232,5 +232,33 @@ export class DocentesService {
     const docente = this.docenteRepository.create(docenteData);
     return this.docenteRepository.save(docente);
   }
+
+
+  async confirmarEvento(id: number): Promise<Evento> {
+    const options: FindOneOptions<Evento> = { where: { id } };
+    // Lógica para confirmar el evento, por ejemplo, actualizando el estado del evento en la base de datos a "confirmado"
+    const evento = await this.eventoRepository.findOne(options);
+    if (!evento) {
+      // Manejar si el evento no existe
+      throw new NotFoundException('Evento no encontrado');
+    }
+  
+    evento.estado = 'confirmado';
+    return this.eventoRepository.save(evento);
+  }
+  async rechazarEvento(id: number): Promise<Evento> {
+    const options: FindOneOptions<Evento> = { where: { id } };
+    const evento = await this.eventoRepository.findOne(options);
+    if (!evento) {
+      throw new NotFoundException('Evento no encontrado');
+    }
+
+    evento.estado = 'rechazado';
+    evento.docente = null; // Si se rechaza el evento, se puede eliminar la relación con el docente (si lo tiene asignado).
+
+    return this.eventoRepository.save(evento);
+  }
+
+  
 
 }

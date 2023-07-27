@@ -203,4 +203,37 @@ export class DocentesController {
       return this.docentesService.createDocente(docenteData);
     }
   }
+
+
+
+  // TODO: Para la connfirmacion del evento
+  @Put(':id/confirmar')
+  async confirmarEvento(@Param('id') id: number): Promise<Evento> {
+    try {
+      const eventoConfirmado = await this.docentesService.confirmarEvento(id);
+      return eventoConfirmado;
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        // Manejar si el evento no fue encontrado
+        throw new NotFoundException('Evento no encontrado');
+      }
+      // Manejar otros errores
+      throw new Error('Error al confirmar el evento');
+    }
+  }
+
+  @Put(':id/rechazar')
+  async rechazarEvento(@Param('id') id: number): Promise<Evento> {
+    try {
+      const eventoRechazado = await this.docentesService.rechazarEvento(id);
+      return eventoRechazado;
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        // Manejar si el evento no fue encontrado
+        throw new NotFoundException('Evento no encontrado');
+      }
+      // Manejar otros errores
+      throw new Error('Error al rechazar el evento');
+    }
+  }
 }
