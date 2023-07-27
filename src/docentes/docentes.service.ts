@@ -243,7 +243,7 @@ export class DocentesService {
       throw new NotFoundException('Evento no encontrado');
     }
   
-    evento.estado = 'confirmado';
+    evento.estado = 'Confirmado';
     return this.eventoRepository.save(evento);
   }
   async rechazarEvento(id: number): Promise<Evento> {
@@ -253,7 +253,7 @@ export class DocentesService {
       throw new NotFoundException('Evento no encontrado');
     }
 
-    evento.estado = 'rechazado';
+    evento.estado = 'Rechazado';
     evento.docente = null; // Si se rechaza el evento, se puede eliminar la relación con el docente (si lo tiene asignado).
 
     return this.eventoRepository.save(evento);
