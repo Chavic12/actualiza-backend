@@ -11,7 +11,7 @@ export class MailController {
     const { id, correo, idEvento } = data;
 
     // Construye la URL de la página de información del evento
-    const urlEvento = `http://localhost:4200/confirmacion/infoEventos/${idEvento}`;
+    const urlEvento = `https://actualiza-tec.netlify.app/confirmacion/infoEventos/${idEvento}`;
 
     // Construye el contenido HTML del correo que deseas enviar al docente
     const contenidoHTML = `
